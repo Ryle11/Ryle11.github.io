@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="background-white text-black">
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div id="phone-details" class="row justify-content-center">
+
+        </div>
+    </div>
+
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const model = urlParams.get('model');
+
+
+        const phoneDetails = {
+            s25ultra: {
+                name: "Galaxy S25 Ultra",
+                description: "Top-tier performance and camera in the latest Galaxy lineup.",
+                image: "Galaxy S25 Ultra.jpg",
+                specs: [
+                    "Display: 6.8-inch Dynamic AMOLED 2X",
+                    "Processor: Snapdragon 8 Gen 2",
+                    "Camera: 200 MP main, 12 MP ultra-wide, 10 MP periscope telephoto",
+                    "Battery: 5000mAh with 45W fast charging",
+                    "Price: $1299"
+                ]
+            },
+            s25plus: {
+                name: "Galaxy S25+",
+                description: "A perfect balance of power and design in the S25 series.",
+                image: "Galaxy S25+.jpg",
+                specs: [
+                    "Display: 6.7-inch Dynamic AMOLED 2X",
+                    "Processor: Snapdragon 8 Gen 2",
+                    "Camera: 50 MP main, 12 MP ultra-wide",
+                    "Battery: 4500mAh with 25W fast charging",
+                    "Price: $999"
+                ]
+            },
+            s25: {
+                name: "Galaxy S25",
+                description: "Experience next-gen performance at an accessible price.",
+                image: "Galaxy S25.jpg",
+                specs: [
+                    "Display: 6.1-inch Dynamic AMOLED 2X",
+                    "Processor: Snapdragon 8 Gen 2",
+                    "Camera: 50 MP main, 12 MP ultra-wide",
+                    "Battery: 4000mAh with 25W fast charging",
+                    "Price: $799"
+                ]
+            },
+            s24fe: {
+                name: "Galaxy S24 FE",
+                description: "Fan Edition with premium features at a lower price point.",
+                image: "GalaxyS24 FE.jpg",
+                specs: [
+                    "Display: 6.4-inch Dynamic AMOLED",
+                    "Processor: Snapdragon 8 Gen 1",
+                    "Camera: 12 MP main, 8 MP ultra-wide",
+                    "Battery: 4500mAh with 25W fast charging",
+                    "Price: $699"
+                ]
+            }
+        };
+
+
+        if (phoneDetails[model]) {
+            const phone = phoneDetails[model];
+
+
+            const phoneInfo = `
+        <div class="col-md-8">
+          <div class="card shadow text-white bg-dark">
+            <img src="${phone.image}" class="img-fluid rounded-start" alt="${phone.name}">
+            <div class="card-body">
+              <h5 class="card-title">${phone.name}</h5>
+              <p class="card-text">${phone.description}</p>
+              <ul class="list-group list-group-flush">
+                ${phone.specs.map(spec => `<li class="list-group-item text-white bg-dark">${spec}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+
+
+            document.getElementById("phone-details").innerHTML = phoneInfo;
+        } else {
+            document.getElementById("phone-details").innerHTML = `
+        <div class="col-md-8">
+          <h2>Phone not found</h2>
+          <p>Sorry, the phone details could not be found.</p>
+        </div>
+      `;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
