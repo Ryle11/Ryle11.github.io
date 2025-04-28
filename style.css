@@ -1,0 +1,13 @@
+/* css/style.css */
+
+body {
+    background-color: #9654ab;
+}
+
+.bg-purple {
+    background-color: #9654ab !important;
+}
+
+.text-white {
+    color: white !important;
+}
