@@ -10,6 +10,7 @@
   <style>
     body {
       background-color: #7773aa;
+      color: #000;
     }
 
     .btn-outline-black {
@@ -24,13 +25,34 @@
       height: 250px;
       object-fit: cover;
     }
+
+    .dark-mode {
+      background-color: #1c1c1c;
+      color: white;
+    }
+
+    .dark-mode .card {
+      background-color: #2e2e2e;
+      color: white;
+    }
+
+    .dark-mode .btn-outline-black {
+      color: white;
+      border-color: white;
+    }
+
+    .dark-mode .btn-outline-black:hover {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
 
-<body style="">
+<body>
   <div class="container-fluid p-5 mb-3" style="color: white">
-    <div class="h3 text-center">
-      My Cat
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="h3 text-white">My Cat</div>
+      <button id="modeToggle" class="btn btn-outline-light" onclick="toggleDarkMode()">Dark Mode</button>
     </div>
   </div>
 
@@ -38,21 +60,34 @@
     <div class="row" id="container-row-1"></div>
   </div>
 
-  </div>
+  <footer class="text-center text-lg-start" style="background-color: #7773aa; color: white; padding: 30px 0;">
+    <div class="container text-center">
+      <button class="btn btn-outline-light rounded-pill mb-3 px-5 py-3 fs-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#favoritesSection" aria-expanded="false" aria-controls="favoritesSection">
+        ★ Favorites
+      </button>
+
+      <div class="collapse" id="favoritesSection">
+        <div class="card card-body mt-4" style="background-color: #F3F0FF; color: black;">
+          <p class="mb-0">This Section is Empty for Now </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    var titles1 = ["Raya", "Ash", "Dos", "Orange"];
-    var pictures1 = ["Raya.jpg", "Ash.jpg", "Dos.jpg", "Orange.jpg"]; 
 
+    var titles1 = ["Raya", "Ash", "Dos", "Orange"];
+    var pictures1 = ["Raya.jpg", "Ash.jpg", "Dos.jpg", "Orange.jpg"];
     var row1 = document.getElementById("container-row-1");
 
-    for (var i = 0; i < titles1.length; i++){
+    for (var i = 0; i < titles1.length; i++) {
       row1.innerHTML +=
         '<div class="col-12 col-sm-6 col-md-4 col-lg-3">' +
-        '<div class="card my-3 shadow rounded overflow-hidden">'+
-        '<div class="zoom-container">'+
-        '<img src="img/'+pictures1[i]+'" class="card-img-top" alt="Image">' +
-        '</div>'+
+        '<div class="card my-3 shadow rounded overflow-hidden">' +
+        '<div class="zoom-container">' +
+        '<img src="img/' + pictures1[i] + '" class="card-img-top" alt="Image">' +
+        '</div>' +
         '<div class="card-body">' +
         '<h5 class="card-title">' + titles1[i] + '</h5>' +
         '<a href="#" class="btn btn-outline-black rounded-pill mt-3"' +
@@ -63,10 +98,7 @@
         '</div>' +
         '</div>';
     }
-
-  </script>
-
-  <script>
+  
     function inquireMouseEnter(button) {
       button.style.backgroundColor = "black";
       button.style.color = "white";
@@ -78,31 +110,34 @@
       button.style.color = "black";
       button.classList.remove("shadow");
     }
+
+
+    function toggleDarkMode() {
+      const body = document.body;
+      const footer = document.querySelector("footer");
+      const cards = document.querySelectorAll(".card");
+      const toggleBtn = document.getElementById("modeToggle");
+
+      body.classList.toggle("dark-mode");
+      footer.classList.toggle("dark-mode");
+      cards.forEach(card => card.classList.toggle("dark-mode"));
+
+
+      if (body.classList.contains("dark-mode")) {
+        toggleBtn.innerHTML = "Light Mode";
+        toggleBtn.classList.remove("btn-outline-light");
+        toggleBtn.classList.add("btn-outline-warning");
+      } else {
+        toggleBtn.innerHTML = "Dark Mode";
+        toggleBtn.classList.remove("btn-outline-warning");
+        toggleBtn.classList.add("btn-outline-light");
+      }
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-    crossorigin="anonymous"></script>
-
-  <footer class="text-center text-lg-start" style="background-color: #7773aa; color: white; padding: 30px 0;">
-    <div class="container text-center">
-      <button class="btn btn-outline-light rounded-pill mb-3 px-5 py-3 fs-4" type="button"
-        data-bs-toggle="collapse" data-bs-target="#favoritesSection" aria-expanded="false"
-        aria-controls="favoritesSection">
-        ★ Favorites
-      </button>
-
-      <div class="collapse" id="favoritesSection">
-        <div class="card card-body mt-4" style="background-color: #F3F0FF; color: black;">
-          <p class="mb-0">This Section is Empty for Now </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-4">
-        
-      </div>
-    </div>
-  </footer>
+       crossorigin="anonymous"></script>
 </body>
 
 </html>
