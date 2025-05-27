@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 5%;
+  background: linear-gradient(to right, #d47000 50%, #8c0000 50%);
+}
+
+.text h1 {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+.icons {
+  margin: 20px 0;
+}
+
+.icons img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.text p {
+  color: white;
+  font-size: 1rem;
+}
+
+.burger img {
+  width: 300px;
+}
